@@ -1,0 +1,49 @@
+package org.richfaces.cdk;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+
+import org.junit.Test;
+
+import com.google.common.collect.Lists;
+
+public class CdkClassLoaderTest extends CdkTestBase {
+    @Test
+    public void resourcePath() throws Exception {
+        File libraryFile = getLibraryFile("test.source.properties");
+        assertNotNull(libraryFile);
+        assertTrue(libraryFile.isDirectory());
+    }
+
+    @Test
+    public void resourcePath2() throws Exception {
+        File libraryFile = getLibraryFile("test.source.properties");
+        File libraryFile2 = getLibraryFile("org/richfaces/cdk/apt/test.html");
+        assertNotNull(libraryFile);
+        assertEquals(libraryFile, libraryFile2);
+    }
+
+    @Test
+    public void resourcePath3() throws Exception {
+        File libraryFile = getLibraryFile("jakarta/faces/component/UIComponent.class");
+        assertNotNull(libraryFile);
+        assertFalse(libraryFile.isDirectory());
+        assertTrue(libraryFile.getName().contains("jsf-api") || libraryFile.getName().contains("myfaces-api"));
+    }
+
+    @Test
+    public void testClassLoader() throws Exception {
+        Iterable<File> paths = Lists.newArrayList(getLibraryFile("test.source.properties"),
+                getLibraryFile("jakarta/faces/component/UIComponent.class"));
+        CdkClassLoader loader = new CdkClassLoader(paths, null);
+        Class<?> class1 = loader.loadClass("jakarta.faces.application.Application");
+        assertNotNull(loader.getResource("jakarta/faces/FacesException.class"));
+        assertNotNull(loader.getResource("org/richfaces/cdk/apt/test.html"));
+        assertNull(loader.getResource("jakarta/el/ELContext.class"));
+    }
+}

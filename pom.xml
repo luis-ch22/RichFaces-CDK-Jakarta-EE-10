@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+
+	<groupId>com.github.luisch22.richfaces.cdk</groupId>
+	<artifactId>aggregator</artifactId>
+	<version>10.0.2-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>RichFaces CDK Aggregator</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- maven-compiler-plugin -->
+		<!-- Overide jboss-parent default version -->
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+	</properties>
+
+	<modules>
+		<module>parent</module>
+		<module>commons</module>
+		<module>annotations</module>
+		<module>attributes</module>
+		<module>xinclude</module>
+		<module>generator</module>
+		<module>cmdln-generator</module>
+		<module>maven-plugin</module>
+		<module>test-component</module>
+		<module>dist</module>
+	</modules>
+	<description>RichFaces Component Development Kit (CDK)</description>
+	<url>https://github.com/luis-ch22/RichFaces-CDK-Jakarta-EE-10</url>
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License, Version 2.1</name>
+			<distribution>repo</distribution>
+			<url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+		</license>
+	</licenses>
+	<developers>
+        <developer>
+            <id>luis-ch22</id>
+            <name>Luis Chavez</name>
+            <url>https://github.com/luis-ch22</url>
+            <roles>
+                <role>Maintainer of the Jakarta EE 10 / Java 21 CDK fork</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>albfernandez</id>
+            <name>Alberto Fernández</name>
+            <url>https://github.com/albfernandez</url>
+            <roles>
+                <role>Author of the upstream RichFaces CDK fork</role>
+            </roles>
+        </developer>
+    </developers>
+	<!-- SCM and distribution management -->
+	<scm>
+		<connection>scm:git:git://github.com/luis-ch22/RichFaces-CDK-Jakarta-EE-10.git</connection>
+		<developerConnection>scm:git:git@github.com:luis-ch22/RichFaces-CDK-Jakarta-EE-10.git</developerConnection>
+		<url>https://github.com/luis-ch22/RichFaces-CDK-Jakarta-EE-10</url>
+		<tag>HEAD</tag>
+	</scm>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/luis-ch22/RichFaces-CDK-Jakarta-EE-10/issues</url>
+	</issueManagement>
+
+
+	<!-- Minimal build configuration -->
+	<build>
+		<finalName>cdk</finalName>
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+			<!-- JavaDoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.10.0</version>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>sign</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.2.7</version>
+						<configuration>
+							<keyname>${gpg.keyname}</keyname>
+							<passphraseServerId>${gpg.keyname}</passphraseServerId>
+						</configuration>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+			          <groupId>org.sonatype.central</groupId>
+			          <artifactId>central-publishing-maven-plugin</artifactId>
+			          <version>0.7.0</version>
+			          <extensions>true</extensions>
+			          <configuration>
+			            <publishingServerId>central</publishingServerId>
+			            <autoPublish>true</autoPublish>
+			          </configuration>
+			        </plugin>
+				</plugins>		
+			</build>		
+		</profile>
+	</profiles>
+
+</project>

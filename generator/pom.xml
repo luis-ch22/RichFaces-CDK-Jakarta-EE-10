@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.luisch22.richfaces.cdk</groupId>
+        <artifactId>parent</artifactId>
+        <version>10.0.2-SNAPSHOT</version>
+        <relativePath>../parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>generator</artifactId>
+    <name>RichFaces CDK Generator</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <version.site.plugin>3.20.0</version.site.plugin>
+
+        <!-- maven-compiler-plugin -->
+        <!-- Overide jboss-parent default version-->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>guice-maven-plugin</artifactId>
+                <!--<configuration> -->
+                <!--<mainClass>mypackage.boot.camel.CamelStartup</mainClass> -->
+                <!--</configuration> -->
+            </plugin>
+            <!-- //TODO make work with groovy 2+ java 11 -->
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.groovy.maven</groupId>-->
+<!--                <artifactId>gmaven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>generate-resources</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>execute</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <properties>-->
+<!--                                <sourceSchema>src/main/resources/META-INF/schema/xhtml-el.xsd</sourceSchema>-->
+<!--                                <targetNamespace>http://jboss.org/schema/richfaces/cdk/xhtml-el</targetNamespace>-->
+<!--                                <outputFile>generated-resources/META-INF/cdk/attributes/xhtml-el.xml</outputFile>-->
+<!--                            </properties>-->
+<!--                            <classpath>-->
+<!--                                <element>-->
+<!--                                    <groupId>com.sun.xsom</groupId>-->
+<!--                                    <artifactId>xsom</artifactId>-->
+<!--                                </element>-->
+<!--                            </classpath>-->
+<!--                            <source>${project.basedir}/src/main/script/SchemaAttributesParserTask.groovy</source>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <useManifestOnlyJar>false</useManifestOnlyJar>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${version.site.plugin}</version>
+                <!--
+                    El goal 'site' NO se engancha a la fase 'package': generar el site
+                    durante package/install no aporta al artefacto y provoca un
+                    NoSuchMethodError (Sink.verbatim) por incompatibilidad entre
+                    maven-project-info-reports-plugin 3.0.0 y el Doxia de site 3.20.0
+                    bajo Java 21. El site puede generarse manualmente con 'mvn site'.
+                -->
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>
+                    src/main/resources
+                </directory>
+            </resource>
+            <resource>
+                <directory>
+                    ${project.build.directory}/generated-resources
+                </directory>
+            </resource>
+        </resources>
+
+    </build>
+    
+    <profiles>
+      
+        
+        <profile>
+	        <id>only-eclipse</id>
+			<activation>
+			  <property>
+			    <name>m2e.version</name>
+			  </property>
+			</activation>
+			<build>
+			
+			        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+<!--                                <pluginExecution>-->
+<!--                                    <pluginExecutionFilter>-->
+<!--                                        <groupId>org.codehaus.groovy.maven</groupId>-->
+<!--                                        <artifactId>gmaven-plugin</artifactId>-->
+<!--                                        <versionRange>[1.0,)</versionRange>-->
+<!--                                        <goals>-->
+<!--                                            <goal>execute</goal>-->
+<!--                                        </goals>-->
+<!--                                    </pluginExecutionFilter>-->
+<!--                                    <action>-->
+<!--                                        <ignore />-->
+<!--                                    </action>-->
+<!--                                </pluginExecution>-->
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+		
+			</build>
+		</profile>
+		
+    </profiles>
+
+    <dependencies>
+        <!-- Java EE -->
+        <!--
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>jakarta.el</groupId>
+			<artifactId>jakarta.el-api</artifactId>
+		</dependency>
+		<dependency>
+	    	<groupId>org.glassfish</groupId>
+	    	<artifactId>jakarta.el</artifactId>
+		</dependency>
+
+        <!-- CDK -->
+        <dependency>
+            <groupId>com.github.luisch22.richfaces.cdk</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.luisch22.richfaces.cdk</groupId>
+            <artifactId>attributes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.luisch22.richfaces.cdk</groupId>
+            <artifactId>xinclude</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.luisch22.richfaces.cdk</groupId>
+            <artifactId>commons</artifactId>
+        </dependency>
+
+        <!-- Compile dependencies -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.albfernandez</groupId>
+            <artifactId>jboss-el</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>xml-apis</groupId>
+            		<artifactId>xml-apis</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xsom</groupId>
+            <artifactId>xsom</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+        </dependency>
+        <!--MZ
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+        </dependency>
+        -->
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.xmlunit</groupId>
+            <artifactId>xmlunit-legacy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.luisch22.richfaces.cdk</groupId>
+            <artifactId>commons</artifactId>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

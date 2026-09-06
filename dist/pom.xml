@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.luisch22.richfaces.cdk</groupId>
+        <artifactId>parent</artifactId>
+        <version>10.0.2-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
+    </parent>
+
+    <artifactId>dist</artifactId>
+    <name>RichFaces CDK Distribution</name>
+
+    <!-- SCM and distribution management -->
+    <scm>
+        <connection>scm:git:git://github.com/richfaces/cdk.git</connection>
+        <developerConnection>scm:git:git@github.com:richfaces/cdk.git</developerConnection>
+        <url>https://github.com/richfaces/cdk</url>
+      <tag>HEAD</tag>
+  </scm>
+    <build>
+        <finalName>cdk</finalName>
+        <plugins>
+            <plugin>
+                <!--
+                        NOTE: We don't need a groupId specification because the group is
+                        org.apache.maven.plugins ...which is assumed by default.
+                    -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/resources/assemblies/project.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- this is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- append to the packaging phase. -->
+                        <goals>
+                            <goal>single</goal>
+                            <!-- goals == mojos -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <description>JSF Components Development Kit (CDK) distribution assembly</description>
+</project>

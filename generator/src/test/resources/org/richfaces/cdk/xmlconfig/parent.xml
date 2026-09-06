@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdk:properties xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:cdk="http://jboss.org/schema/richfaces/cdk/extensions">
+    <xi:include href="urn:resource:org/richfaces/cdk/xmlconfig/include.xml" xpointer="xmlns(cdk=http://jboss.org/schema/richfaces/cdk/extensions)xpointer(/cdk:properties/*)" />
+
+</cdk:properties>

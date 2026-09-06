@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<faces-config version="4.0" metadata-complete="false"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:cdk="http://jboss.org/schema/richfaces/cdk/extensions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <converter>
+        <converter-id>my_converter</converter-id>
+        <converter-class>java.lang.Object</converter-class>
+        <converter-extension />
+    </converter>
+    <faces-config-extension />
+</faces-config>

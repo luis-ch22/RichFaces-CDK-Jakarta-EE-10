@@ -125,6 +125,20 @@ public class FragmentParserTest extends CdkTestBase {
         assertEquals("bar", alias);
     }
 
+    /**
+     * Los fragmentos del módulo <code>attributes</code> deben estar en el namespace Jakarta; con otro namespace JAXB los
+     * deserializa vacíos sin error.
+     */
+    @Test
+    public void attributesModuleFragmentTest() throws Exception {
+
+        Collection<PropertyBase> properties = parser.parseProperties("urn:attributes:style-prop.xml");
+
+        PropertyBase property = Iterables.getOnlyElement(properties);
+        assertEquals("style", property.getName());
+        assertTrue(property.isPassThrough());
+    }
+
     @Test
     public void xincludeTest() throws Exception {
 

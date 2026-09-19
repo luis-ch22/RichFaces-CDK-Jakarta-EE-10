@@ -78,7 +78,6 @@ public class CdkEntityResolver implements EntityResolver2 {
             .put("https://www.w3.org/2001/xml.xsd", "/xml.xsd")
             .put("http://jboss.org/schema/richfaces/cdk/cdk-template.xsd", "/cdk-template.xsd")
             .put("http://jboss.org/schema/richfaces/cdk/cdk-jstl-core.xsd", "/cdk-jstl-core.xsd")
-            .put("http://jboss.org/schema/richfaces/cdk/cdk-schemas-aggregation.xsd", "/cdk-schemas-aggregation.xsd")
             .put("http://jboss.org/schema/richfaces/cdk/cdk-composite.xsd", "/cdk-composite.xsd")
             .put("http://jboss.org/schema/richfaces/cdk/xhtml-el.xsd", "/xhtml-el.xsd").build();
     @Inject

@@ -84,28 +84,6 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.modello</groupId>
-                <artifactId>modello-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- Generate the xpp3 reader code -->
-                            <goal>xpp3-reader</goal>
-                            <!-- Generate the xpp3 writer code -->
-                            <goal>xpp3-writer</goal>
-                            <!-- Generate the Java sources for the model itself -->
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <version>1.0.0</version>
-                    <models>
-                        <model>src/main/mdo/resource-config.mdo</model>
-                    </models>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>3.15.0</version>
@@ -130,25 +108,6 @@
                 </executions>
             </plugin>
             
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>target/generated-sources/modello</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
     <profiles>

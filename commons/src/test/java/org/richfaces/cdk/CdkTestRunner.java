@@ -114,7 +114,7 @@ public class CdkTestRunner extends BlockJUnit4ClassRunner {
         Injector injector;
         Object test = super.createTest();
         if (Module.class.isAssignableFrom(testClass)) {
-            injector = Guice.createInjector(fields, (Module) testClass.newInstance());
+            injector = Guice.createInjector(fields, (Module) testClass.getDeclaredConstructor().newInstance());
         } else {
             injector = Guice.createInjector(fields);
         }

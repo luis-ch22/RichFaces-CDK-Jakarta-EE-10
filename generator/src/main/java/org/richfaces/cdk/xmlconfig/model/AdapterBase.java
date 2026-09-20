@@ -64,7 +64,7 @@ public abstract class AdapterBase<Bean, Model> extends XmlAdapter<Bean, Model> {
     @SuppressWarnings("unchecked")
     public Bean createBean(Class<? extends Bean> beanClass, Model model) throws CdkException {
         try {
-            Bean bean = beanClass.newInstance();
+            Bean bean = beanClass.getDeclaredConstructor().newInstance();
 
             // Copy properties from model to bean.
             JavaUtils.copyProperties(model, bean);
@@ -73,9 +73,7 @@ public abstract class AdapterBase<Bean, Model> extends XmlAdapter<Bean, Model> {
             }
 
             return bean;
-        } catch (InstantiationException e) {
-            throw new CdkException("JAXB adapter class instantiation error", e);
-        } catch (IllegalAccessException e) {
+        } catch (ReflectiveOperationException e) {
             throw new CdkException("JAXB adapter class instantiation error", e);
         }
     }
@@ -110,11 +108,10 @@ public abstract class AdapterBase<Bean, Model> extends XmlAdapter<Bean, Model> {
     }
 
     @SuppressWarnings("unchecked")
-    protected <D, E extends ConfigExtension> E createExtension(D destination) throws NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    protected <D, E extends ConfigExtension> E createExtension(D destination) throws ReflectiveOperationException {
 
         Method method = destination.getClass().getMethod("getExtension");
-        return ((Class<E>) method.getReturnType()).newInstance();
+        return ((Class<E>) method.getReturnType()).getDeclaredConstructor().newInstance();
     }
 
     private void copyExtensions(Extensible<ConfigExtension> source, Extensible<ConfigExtension> destination, Boolean fromModel) {
@@ -148,7 +145,7 @@ public abstract class AdapterBase<Bean, Model> extends XmlAdapter<Bean, Model> {
     protected Model createModelElement(Class<? extends Model> modelClass, Bean adapter) {
         try {
 
-            Model modelBean = modelClass.newInstance();
+            Model modelBean = modelClass.getDeclaredConstructor().newInstance();
 
             JavaUtils.copyProperties(adapter, modelBean);
 

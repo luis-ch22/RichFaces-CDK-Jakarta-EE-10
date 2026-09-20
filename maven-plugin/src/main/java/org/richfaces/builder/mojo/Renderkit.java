@@ -29,7 +29,7 @@ public class Renderkit {
     private String name = "HTML_BASIC";
     private String classPackage;
     private String classname;
-    private StringBuffer content;
+    private StringBuilder content;
 
     /**
      * @return the classname
@@ -90,14 +90,14 @@ public class Renderkit {
     /**
      * @return the content
      */
-    StringBuffer getContent() {
+    StringBuilder getContent() {
         return this.content;
     }
 
     /**
      * @param content the content to set
      */
-    void setContent(StringBuffer content) {
+    void setContent(StringBuilder content) {
         this.content = content;
     }
 

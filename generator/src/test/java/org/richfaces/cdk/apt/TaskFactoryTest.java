@@ -101,7 +101,7 @@ public class TaskFactoryTest extends AnnotationProcessorTestBase {
         expect(output.getFolders()).andReturn(null);
         processor.init((ProcessingEnvironment) anyObject());
         expectLastCall();
-        expect(processor.getSupportedSourceVersion()).andReturn(SourceVersion.RELEASE_8);
+        expect(processor.getSupportedSourceVersion()).andReturn(SourceVersion.latestSupported());
         expect(processor.getSupportedAnnotationTypes()).andReturn(Collections.singleton("*"));
         expect(processor.getSupportedOptions()).andReturn(Collections.<String>emptySet());
         // processor.process(null,null);

@@ -30,7 +30,6 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
@@ -105,12 +104,16 @@ public abstract class SourceUtilsTestBase extends AnnotationProcessorTestBase {
      * @author asmirnov@exadel.com
      *
      */
-    @SupportedSourceVersion(SourceVersion.RELEASE_8)
     @SupportedAnnotationTypes("*")
     public static class TestProcessor extends AbstractProcessor implements CdkProcessor {
         @Inject
         protected SourceUtilsProvider sourceUtilsProvider;
         SourceUtilsCallback callback;
+
+        @Override
+        public SourceVersion getSupportedSourceVersion() {
+            return SourceVersion.latestSupported();
+        }
 
         @Override
         public synchronized void init(ProcessingEnvironment processingEnv) {

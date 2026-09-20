@@ -3,9 +3,9 @@ name: Richfaces CDK CI
 
 on:
   push:
-    branches: [ main, jakarta ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, jakarta ]
+    branches: [ main ]
 
 jobs:
   build:

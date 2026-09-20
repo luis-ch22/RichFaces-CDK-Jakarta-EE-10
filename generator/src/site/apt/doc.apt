@@ -29,11 +29,9 @@ Preferable classes names.
 	
     * <\<prefix\>>.<\<Markup\>><\<RendererName\>>.xml - template for generating the renderer class. jspx - like syntax is used. Provided by component developer.
 	
-    * <\<prefix\>>.taglib.<\<RendererName\>>Tag - JSP tag class.
-	
     * <\<prefix\>>.taglib.<\<RendererName\>>TagHandler - facelets tag handler class.
 	
-    * <\<renderername\>> - JSP/facelets tag name.
+    * <\<renderername\>> - facelets tag name.
 	
    []
 	
@@ -49,8 +47,6 @@ Preferable classes names.
 	
     * <\<prefix\>>.event.<\<Event\>>EventWrapper - wrapper class. Uses for binding listener's EL-expression in user's beans.
 	
-    * <\<prefix\>>.taglib.<\<Event\>>ListenerTag - JSP tag class for creating listener instance. Parent tag must creates component implementing Source interface.
-	
     * <\<prefix\>>.taglib.<\<Event\>>ListenerTagHandler - facelets tag class for create listener instance.
 	
    []
@@ -61,7 +57,7 @@ Preferable classes names.
 	
    [<\<name\>>] is a name for base component ( for UIInput component <\<name\>> is "input" ). value for component name generator can got from UI... or Abstract... class name.
 	
-   [<\<markup\>>] is a render-kit generated content name, "html" for HTML/XHTML pages, "wml" for mobile content etc. Must be provided in the render-kit description by ant task or maven POM. By default, "html" is used
+   [<\<markup\>>] is a render-kit generated content name, "html" for HTML/XHTML pages, "wml" for mobile content etc. Must be provided in the render-kit description in the maven POM. By default, "html" is used
 	
    [<\<rendererName\>>] - name of renderer for concreting a visual component implementation, e.g. "commandButton" , "panelGroup" etc. Generator can take rendererName from a template file name.
 	
@@ -76,7 +72,7 @@ Configuration building rules.
   For additional information and custom names and classes, developer can provide such information directly in Java code by special annotations, or
   create a special xml configuration file.
   
-* A sequence for collecting configuration information ( library-wide information provided by ant task or maven-plugin configuration ):
+* A sequence for collecting configuration information ( library-wide information provided by the maven-plugin configuration ):
 
   [[1]] As a first step, generator must read xml components configuration files and build internal structure for generation.
   
@@ -93,5 +89,5 @@ Configuration building rules.
   
   [[7]] Generates Java classes for components, tags and event-related interfaces.
   
-  [[8]] creates configuration files ( faces-config.xml , ...tld, ...taglib.xml ).
+  [[8]] creates configuration files ( faces-config.xml , ...taglib.xml ).
   

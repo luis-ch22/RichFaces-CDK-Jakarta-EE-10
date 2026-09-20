@@ -1,73 +1,75 @@
-                        ----------------------------------------------
-                          RichFaces CDK Maven plugin
-                        ----------------------------------------------
-
-Uso
-
- El plugin ejecuta el generador del CDK (componentes, renderers, taglibs, faces-config y
- recursos) durante la fase <<<generate-sources>>>. Agregue al <<<pom.xml>>> del proyecto:
-
-+-----------------------------------------------------------------------------------------------------------+
-<build>
-    <plugins>
-        <plugin>
-            <groupId>com.github.luisch22.richfaces.cdk</groupId>
-            <artifactId>richfaces-cdk-maven-plugin</artifactId>
-            <version>${version.cdk}</version>
-            <executions>
-                <execution>
-                    <id>cdk-generate-sources</id>
-                    <phase>generate-sources</phase>
-                    <goals>
-                        <goal>generate</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <charset>UTF-8</charset>
-                <locale>en</locale>
-                <templates>
-                    <fileSet>
-                        <directory>${project.basedir}/src/main/java</directory>
-                        <includes>
-                            <include>**/*.template.xml</include>
-                        </includes>
-                    </fileSet>
-                </templates>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-+-----------------------------------------------------------------------------------------------------------+
-
- El goal <<<generate>>> necesita ver la API de Jakarta Faces (por ejemplo
- <<<jakarta.faces>>> o <<<myfaces-api>>>) en el classpath del proyecto o como dependencia del plugin.
-
-Parametros del goal <<<generate>>>
-
-*--------------------------+----------------------------------------------------------------------------+
+                        ----------------------------------------------
+                          RichFaces CDK Maven plugin
+                        ----------------------------------------------
+                        ----------------------------------------------
+                        ----------------------------------------------
+
+Uso
+
+ El plugin ejecuta el generador del CDK (componentes, renderers, taglibs, faces-config y
+ recursos) durante la fase <<<generate-sources>>>. Agregue al <<<pom.xml>>> del proyecto:
+
++-----------------------------------------------------------------------------------------------------------+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>com.github.luisch22.richfaces.cdk</groupId>
+            <artifactId>richfaces-cdk-maven-plugin</artifactId>
+            <version>${version.cdk}</version>
+            <executions>
+                <execution>
+                    <id>cdk-generate-sources</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <charset>UTF-8</charset>
+                <locale>en</locale>
+                <templates>
+                    <fileSet>
+                        <directory>${project.basedir}/src/main/java</directory>
+                        <includes>
+                            <include>**/*.template.xml</include>
+                        </includes>
+                    </fileSet>
+                </templates>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
++-----------------------------------------------------------------------------------------------------------+
+
+ El goal <<<generate>>> necesita ver la API de Jakarta Faces (por ejemplo
+ <<<jakarta.faces>>> o <<<myfaces-api>>>) en el classpath del proyecto o como dependencia del plugin.
+
+Parametros del goal <<<generate>>>
+
+*--------------------------+----------------------------------------------------------------------------+
 | <<<templates>>>          | <<<fileSet>>> con las plantillas de renderers. Por defecto <<<src/main/templates/**/*.xml>>>. |
-*--------------------------+----------------------------------------------------------------------------+
+*--------------------------+----------------------------------------------------------------------------+
 | <<<facesConfigs>>>       | <<<fileSet>>> con los archivos de configuracion JSF que procesa el CDK. Por defecto <<<src/main/config/*.xml>>>. |
-*--------------------------+----------------------------------------------------------------------------+
+*--------------------------+----------------------------------------------------------------------------+
 | <<<sourceIncludes>>>,    | Filtros de los fuentes Java que procesa el procesador de anotaciones (por defecto todos los <<<*.java>>>). |
-| <<<sourceExcludes>>>     |                                                                            |
-*--------------------------+----------------------------------------------------------------------------+
-| <<<charset>>>            | Charset que usa el generador (por defecto el de la JVM).          |
-*--------------------------+----------------------------------------------------------------------------+
-| <<<locale>>>             | Locale usado por el generador (por defecto el de la JVM).                    |
-*--------------------------+----------------------------------------------------------------------------+
-| <<<options>>>,           | Opciones y workers del generador (uso avanzado).                                  |
-| <<<workers>>>            |                                                                            |
-*--------------------------+----------------------------------------------------------------------------+
-| <<<outputJavaDirectory>>>| Destino de las clases generadas                                              |
-|                          | (<<<${project.build.directory}/generated-sources/main/java>>>).             |
-*--------------------------+----------------------------------------------------------------------------+
-| <<<outputResourcesDirectory>>> | Destino de los recursos generados                                      |
-|                          | (<<<${project.build.directory}/generated-sources/main/resources>>>).        |
-*--------------------------+----------------------------------------------------------------------------+
-| <<<cdk.recompile>>>      | Propiedad de usuario: fuerza la regeneracion ignorando la cache de libreria. |
-*--------------------------+----------------------------------------------------------------------------+
-
- El bloque opcional <<<library>>> permite fijar <<<taglib/shortName>>>, que se usa como prefijo del
- namespace de la libreria de tags generada.
+| <<<sourceExcludes>>>     |                                                                            |
+*--------------------------+----------------------------------------------------------------------------+
+| <<<charset>>>            | Charset que usa el generador (por defecto el de la JVM).          |
+*--------------------------+----------------------------------------------------------------------------+
+| <<<locale>>>             | Locale usado por el generador (por defecto el de la JVM).                    |
+*--------------------------+----------------------------------------------------------------------------+
+| <<<options>>>,           | Opciones y workers del generador (uso avanzado).                                  |
+| <<<workers>>>            |                                                                            |
+*--------------------------+----------------------------------------------------------------------------+
+| <<<outputJavaDirectory>>>| Destino de las clases generadas                                              |
+|                          | (<<<${project.build.directory}/generated-sources/main/java>>>).             |
+*--------------------------+----------------------------------------------------------------------------+
+| <<<outputResourcesDirectory>>> | Destino de los recursos generados                                      |
+|                          | (<<<${project.build.directory}/generated-sources/main/resources>>>).        |
+*--------------------------+----------------------------------------------------------------------------+
+| <<<cdk.recompile>>>      | Propiedad de usuario: fuerza la regeneracion ignorando la cache de libreria. |
+*--------------------------+----------------------------------------------------------------------------+
+
+ El bloque opcional <<<library>>> permite fijar <<<taglib/shortName>>>, que se usa como prefijo del
+ namespace de la libreria de tags generada.

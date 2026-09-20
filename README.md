@@ -16,6 +16,23 @@ Este repositorio es un fork migrado a **Jakarta EE 10 / Jakarta Faces 4.0** y
 - Plantillas que emiten código `jakarta.faces.*` / `jakarta.el.*`.
 - `groupId` del proyecto: `com.github.luisch22.richfaces.cdk`.
 
+## Piezas retiradas respecto al CDK original
+
+Este fork elimina código y recursos que ya no tenían efecto en Jakarta Faces 4:
+
+- **El goal `richfaces-cdk:compile`.** No generaba nada: volcaba objetos del
+  proyecto al log. El único goal soportado es `generate`.
+- **El motor Velocity y el soporte de *skins*/temas** (`templates/`,
+  `templates12/`, `skin/`, `theme/`): no estaban cableados a ninguna clase.
+- **La lógica que seleccionaba salida según la versión de JSF 1.x**
+  (`AbstractCDKMojo`) y las plantillas TLD/JSP de Velocity que la acompañaban.
+  Faces 4 no usa JSP: el CDK genera `faces-config.xml` y `*.taglib.xml`, más
+  *tag handlers* de Facelets, pero ni TLD ni clases de tag JSP.
+- **Las anotaciones `@Test`/`TestType`** y el miembro `test()` de
+  `@JsfComponent` y `@RendererSpecificComponent`, que ningún procesador leía.
+- **Los esquemas Java EE 5 / JSF 1.2 y 2.0**; el CDK solo valida contra los de
+  Jakarta Faces 4.0.
+
 ## Artefacto principal
 
 El plugin Maven que consume el runtime:

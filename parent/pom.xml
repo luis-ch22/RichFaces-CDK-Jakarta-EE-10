@@ -29,14 +29,6 @@
                 <role>Maintainer of the Jakarta EE 10 / Java 21 CDK fork</role>
             </roles>
         </developer>
-        <developer>
-            <id>albfernandez</id>
-            <name>Alberto Fernández</name>
-            <url>https://github.com/albfernandez</url>
-            <roles>
-                <role>Author of the upstream RichFaces CDK fork</role>
-            </roles>
-        </developer>
     </developers>
 	<!-- SCM and distribution management -->
 	<scm>

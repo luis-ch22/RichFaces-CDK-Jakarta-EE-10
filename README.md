@@ -57,8 +57,8 @@ mvn -f maven-plugin/pom.xml -P it integration-test
 
 ## Créditos
 
-- Fork basado en el [RichFaces CDK de Alberto Fernández](https://github.com/albfernandez/richfaces-cdk),
-  a su vez derivado del proyecto JBoss RichFaces (discontinuado).
+- Basado en el RichFaces CDK (rama 4.6.x), a su vez derivado del proyecto
+  JBoss RichFaces (discontinuado).
 - Migración a Jakarta EE 10 / Java 21 y mantenimiento de este fork: Luis Chavez
   ([luis-ch22](https://github.com/luis-ch22)).
 

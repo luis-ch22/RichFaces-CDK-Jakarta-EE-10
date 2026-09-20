@@ -62,13 +62,6 @@ public class CdkEntityResolver implements EntityResolver2 {
     private static final String SYSTEM_PREFIX = "/META-INF/schema";
     private static final String URN_SYSTEM = "urn:system:";
     private static final ImmutableMap<String, String> SYSTEM_ENTITIES = ImmutableMap.<String, String>builder()
-            .put("http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd", "/web-facesconfig_2_0.xsd")
-            .put("http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd", "/web-facesuicomponent_2_0.xsd")
-            .put("http://java.sun.com/xml/ns/javaee/web-partialresponse_2_0.xsd", "/web-partialresponse_2_0.xsd")
-            .put("http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd", "/web-facesconfig_1_2.xsd")
-            .put("http://java.sun.com/xml/ns/javaee/javaee_5.xsd", "/javaee_5.xsd")
-            .put("http://java.sun.com/xml/ns/javaee/javaee_web_services_1_2.xsd", "/javaee_web_services_1_2.xsd")
-            .put("http://java.sun.com/xml/ns/javaee/javaee_web_services_client_1_2.xsd", "/javaee_web_services_client_1_2.xsd")
             .put("https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd", "/web-facesconfig_4_0.xsd")
             .put("https://jakarta.ee/xml/ns/jakartaee/web-facelettaglibrary_4_0.xsd", "/web-facelettaglibrary_4_0.xsd")
             .put("https://jakarta.ee/xml/ns/jakartaee/jakartaee_10.xsd", "/jakartaee_10.xsd")

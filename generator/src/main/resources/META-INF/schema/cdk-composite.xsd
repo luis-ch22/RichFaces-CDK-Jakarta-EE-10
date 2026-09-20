@@ -184,7 +184,7 @@
 
                     PENDING: when
                     this file is generated from the
-                    web-facesuicomponent_2_0.xsd,
+                    web-facesuicomponent schema of the Faces specification,
                     we
                     will not need to copy the content here manually.
 
@@ -328,7 +328,7 @@
                         The declared
                         <code>component-family</code>
                         for this component must be
-                        <code>javax.faces.NamingContainer</code>
+                        <code>jakarta.faces.NamingContainer</code>
                         .
                     </p>
                 </xs:documentation>

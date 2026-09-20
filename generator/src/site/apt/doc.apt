@@ -57,7 +57,7 @@ Preferable classes names.
 	
    Definitions that are used in this structure ( uppercase symbols means Java names notation, for name "foo" <\<name\>> mean "foo", and <\<Name\>> - "Foo"  ): 
 	
-   [<\<prefix\>>] is a common library name ( for example, base JSF components use <\<javax.faces\>> prefix ). value for prefix get from abstract component package or renderer template path.
+   [<\<prefix\>>] is a common library name ( for example, base JSF components use <\<jakarta.faces\>> prefix ). value for prefix get from abstract component package or renderer template path.
 	
    [<\<name\>>] is a name for base component ( for UIInput component <\<name\>> is "input" ). value for component name generator can got from UI... or Abstract... class name.
 	
@@ -80,7 +80,7 @@ Configuration building rules.
 
   [[1]] As a first step, generator must read xml components configuration files and build internal structure for generation.
   
-  [[2]] Generator searches in the all sources folders for Java classes with name like Abstract* or UI*, inherited from javax.faces.component.UIComponent.
+  [[2]] Generator searches in the all sources folders for Java classes with name like Abstract* or UI*, inherited from jakarta.faces.component.UIComponent.
   
   [[3]] For all components classes, founded on the step 2, but not included in xml config, generator must create default configuration object, with names for generated classes constructed by default layout.
   

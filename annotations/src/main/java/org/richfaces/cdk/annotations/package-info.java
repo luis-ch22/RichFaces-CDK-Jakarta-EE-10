@@ -14,7 +14,6 @@
  * </ul>
  * <h3>Annotations used to refine class top level definitions</h3>
  * <ul>
- * <li>&#064;{@link org.richfaces.cdk.annotations.Test} tells CDK to generate unit test for component.</li>
  * <li>&#064;{@link org.richfaces.cdk.annotations.Description} optional IDE-related parameters.</li>
  * <li>&#064;{@link org.richfaces.cdk.annotations.Tag} VDL tag description.</li>
  * <li>&#064;{@link org.richfaces.cdk.annotations.RendererSpecificComponent} defines renderer specific component for the family created from one base component</li>

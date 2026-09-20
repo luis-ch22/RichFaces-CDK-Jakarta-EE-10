@@ -31,7 +31,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.richfaces.cdk.util.JavaUtils;
 import org.richfaces.cdk.util.Strings;
@@ -391,21 +390,10 @@ public class ComponentLibrary implements Serializable, Extensible<ConfigExtensio
     }
 
     static <T extends ModelElement<T>> void merge(Collection<T> target, Collection<T> source) {
+        // TODO - lookup for an equivalent element in the target collection instead of relying on the
+        // merge-on-add of the target collection implementation ( see ModelSet.add ).
         for (T element : source) {
-            T targetElement = null;
-
-            try {
-                // TODO - lookup for equivalent element in target collection.
-                // find(target, element.getKey());
-            } catch (NoSuchElementException e) {
-                // TODO: handle exception
-            }
-
-            if (null == targetElement) {
-                target.add(element);
-            } else {
-                targetElement.merge(element);
-            }
+            target.add(element);
         }
     }
 

@@ -14,9 +14,9 @@
 
     <!-- SCM and distribution management -->
     <scm>
-        <connection>scm:git:git://github.com/richfaces/cdk.git</connection>
-        <developerConnection>scm:git:git@github.com:richfaces/cdk.git</developerConnection>
-        <url>https://github.com/richfaces/cdk</url>
+        <connection>scm:git:git://github.com/luis-ch22/RichFaces-CDK-Jakarta-EE-10.git</connection>
+        <developerConnection>scm:git:git@github.com:luis-ch22/RichFaces-CDK-Jakarta-EE-10.git</developerConnection>
+        <url>https://github.com/luis-ch22/RichFaces-CDK-Jakarta-EE-10</url>
       <tag>HEAD</tag>
   </scm>
     <build>

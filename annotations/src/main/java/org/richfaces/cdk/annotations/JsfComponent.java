@@ -88,15 +88,6 @@ public @interface JsfComponent {
 
     /**
      * <p class="changed_added_4_0">
-     * Junit test description. Isn't used in RichFaces 4.0, reserved for future releases.
-     * </p>
-     *
-     * @return
-     */
-    Test test() default @Test(testClass = "");
-
-    /**
-     * <p class="changed_added_4_0">
      * JsfRenderer associated with this component.
      * </p>
      *

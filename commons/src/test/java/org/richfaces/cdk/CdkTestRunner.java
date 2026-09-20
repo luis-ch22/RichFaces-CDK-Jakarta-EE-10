@@ -92,16 +92,7 @@ public class CdkTestRunner extends BlockJUnit4ClassRunner {
         Class<?> c = getTestClass().getJavaClass();
         Set<Field> testFields = getFields(c);
 
-        // make sure we have one (and only one) @Unit field
-        // Field unitField = getUnitField(testFields);
-        // if ( unitField.getAnnotation(Mock.class) != null ) {
-        // throw new IncompatibleAnnotationException(Unit.class, Mock.class);
-        // }
-        //
         final Map<Field, Binding> fieldValues = getMockValues(testFields);
-        // if ( fieldValues.containsKey(unitField)) {
-        // throw new IncompatibleAnnotationException(Unit.class, unitField.getType());
-        // }
 
         Object test = createTest(c, fieldValues);
 
@@ -123,7 +114,7 @@ public class CdkTestRunner extends BlockJUnit4ClassRunner {
         Injector injector;
         Object test = super.createTest();
         if (Module.class.isAssignableFrom(testClass)) {
-            injector = Guice.createInjector(fields, (Module) testClass.newInstance());
+            injector = Guice.createInjector(fields, (Module) testClass.getDeclaredConstructor().newInstance());
         } else {
             injector = Guice.createInjector(fields);
         }

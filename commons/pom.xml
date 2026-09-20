@@ -29,12 +29,6 @@
         </plugins>
     </build>
     <dependencies>
-    	<!--MZ
-        <dependency>
-            <groupId>org.sonatype.sisu</groupId>
-            <artifactId>sisu-guice</artifactId>
-        </dependency>
-        -->
         <dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>

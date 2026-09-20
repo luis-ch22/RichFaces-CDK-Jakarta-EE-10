@@ -18,7 +18,6 @@
         <version.site.plugin>3.20.0</version.site.plugin>
 
         <!-- maven-compiler-plugin -->
-        <!-- Overide jboss-parent default version-->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -27,40 +26,6 @@
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>guice-maven-plugin</artifactId>
-                <!--<configuration> -->
-                <!--<mainClass>mypackage.boot.camel.CamelStartup</mainClass> -->
-                <!--</configuration> -->
-            </plugin>
-            <!-- //TODO make work with groovy 2+ java 11 -->
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.groovy.maven</groupId>-->
-<!--                <artifactId>gmaven-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>generate-resources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>execute</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <properties>-->
-<!--                                <sourceSchema>src/main/resources/META-INF/schema/xhtml-el.xsd</sourceSchema>-->
-<!--                                <targetNamespace>http://jboss.org/schema/richfaces/cdk/xhtml-el</targetNamespace>-->
-<!--                                <outputFile>generated-resources/META-INF/cdk/attributes/xhtml-el.xml</outputFile>-->
-<!--                            </properties>-->
-<!--                            <classpath>-->
-<!--                                <element>-->
-<!--                                    <groupId>com.sun.xsom</groupId>-->
-<!--                                    <artifactId>xsom</artifactId>-->
-<!--                                </element>-->
-<!--                            </classpath>-->
-<!--                            <source>${project.basedir}/src/main/script/SchemaAttributesParserTask.groovy</source>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -103,61 +68,9 @@
 
     </build>
     
-    <profiles>
-      
-        
-        <profile>
-	        <id>only-eclipse</id>
-			<activation>
-			  <property>
-			    <name>m2e.version</name>
-			  </property>
-			</activation>
-			<build>
-			
-			        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-<!--                                <pluginExecution>-->
-<!--                                    <pluginExecutionFilter>-->
-<!--                                        <groupId>org.codehaus.groovy.maven</groupId>-->
-<!--                                        <artifactId>gmaven-plugin</artifactId>-->
-<!--                                        <versionRange>[1.0,)</versionRange>-->
-<!--                                        <goals>-->
-<!--                                            <goal>execute</goal>-->
-<!--                                        </goals>-->
-<!--                                    </pluginExecutionFilter>-->
-<!--                                    <action>-->
-<!--                                        <ignore />-->
-<!--                                    </action>-->
-<!--                                </pluginExecution>-->
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-		
-			</build>
-		</profile>
-		
-    </profiles>
 
     <dependencies>
-        <!-- Java EE -->
-        <!--
-        <dependency>
-            <groupId>org.jboss.spec.javax.faces</groupId>
-            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
-        </dependency>
-        -->
+        <!-- Jakarta EE -->
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
@@ -221,10 +134,6 @@
             <artifactId>guava</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sun.xsom</groupId>
-            <artifactId>xsom</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
         </dependency>
@@ -236,12 +145,6 @@
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-assistedinject</artifactId>
         </dependency>
-        <!--MZ
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-multibindings</artifactId>
-        </dependency>
-        -->
 
         <!-- Test dependencies -->
         <dependency>
